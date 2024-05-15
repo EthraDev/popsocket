@@ -12,6 +12,8 @@ const io = new Server(server, {
         }
 })
 
+const apiurl = "https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple";
+
 // let dicoscrore ={
 //     "&evgf": 0,
 // }
@@ -48,10 +50,10 @@ io.on('connection', (socket) => {
 
     // })
     
-    socket.on('room', (room, msg) => {
-        console.log('room: ' + room + ' message: ' + msg);
-        socket.join(room);
-    });
+    // socket.on('room', (room, msg) => {
+    //     console.log('room: ' + room + ' message: ' + msg);
+    //     socket.join(room);
+    // });
 
     socket.on('join', (room) => {
         console.log('join room: ' + room);
@@ -62,6 +64,13 @@ io.on('connection', (socket) => {
         socket.leave(room);
         io.to(room).emit('leave', room);
     });
+
+    socket.on('start', async (room) =>{
+        console.log('starting game in room: ' + room);
+        const response = await fetch(apiurl);
+        const data = await response.json();
+        io.to(room).emit('apiData', data);
+    })
 })
 
 

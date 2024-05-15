@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="header">
         <div>
@@ -13,20 +15,20 @@
             <!-- <button id="start" >start</button>-->
             <p>Your room:</p>
             <textarea name="" id="roomSelector"></textarea>
-            <button onclick="createRoom()">Create Room</button>
             <button onclick="joinRoom()">Join Room</button>
-            
+            <button onClick="leaveRoom()"> Leave Room </button>
             <p id="time"></p>
         </div>
     </div>
 
     <section id="theRoom">
+        
         <div id="quizz">
-            <p id="start" >START GAME?</p>
+            <p id="start">START GAME?</p>
             <div id="question"></div>
             <div id="answer"></div>
         </div>
-    
+
         <div id="tab">
             <div id="profil">
                 <p>your score:</p>
@@ -42,8 +44,10 @@
     <button onclick="send()">Refresh</button> -->
 
 </body>
-<script src="../backend/api.js"></script>
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+<script src="./script.js"></script>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+    integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
+    crossorigin="anonymous"></script>
 <script>
     let i = 0;
     let room = '';
@@ -62,18 +66,37 @@
         console.log('Disconnected');
     });
 
-    function createRoom(){
-        socket.emit('room', i, `Message room ${i++}`);
+    socket.on('apiData', (data) => {
+        displayQuestion(data);
+        document.querySelector('#start').style.display = "none";
+    });
+
+    function leaveRoom() {
+        if (room != '') {
+            socket.emit('leave', room);
+            room = '';
+        }
     }
 
-    function joinRoom() { 
+    function joinRoom() {
         const newRoom = text.value;
         if (newRoom !== room) {
             socket.emit('leave', room);
             socket.emit('join', newRoom);
             room = newRoom;
+            document.querySelector('#start').value = room;
         }
     }
 
+    let bt = document.querySelector("#start");
+    bt.addEventListener("click", function () {
+        bt.style.display = "none";
+
+        socket.emit('start', room)
+        //startCountdown(10);
+
+    });
+
 </script>
+
 </html>
