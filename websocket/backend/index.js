@@ -21,12 +21,18 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+
     console.log('a user connected');
+
+    const userId = socket.id;
+    console.log('User ID:', userId);
+
     socket.broadcast.emit('user connected');
     socket.on('disconnect', () => {
         console.log('user disconnected');
         socket.broadcast.emit('user disconnected');
     });
+    
     socket.on('message', (msg) => {
         console.log('message: ' + msg);
         io.emit('message', msg);
