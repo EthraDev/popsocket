@@ -12,6 +12,8 @@
             <h1>POP SOCKET !</h1>
             <p>Your room:</p>
             <textarea name="" id="roomSelector"></textarea>
+            <button onclick="createRoom()">Create Room</button>
+            <button onclick="joinRoom()">Join Room</button>
         </div>
     </div>
 
@@ -37,10 +39,11 @@
     let i = 0;
     let room = '';
     let socketid = '';
-    const text = document.querySelector('textarea');
+    const text = document.querySelector('#roomSelector');
     const socket = io('http://localhost:3000');
     socket.on('connect', () => {
         console.log('Connected');
+        socketid = socket.id;
     });
     socket.on('message', (data) => {
         console.log(data);
@@ -50,17 +53,18 @@
         console.log('Disconnected');
     });
 
-    let send = () => {
-        i++;
-        console.log(text.value);
-        //socket.emit('message', `Message ${i}`);
-        socket.emit('room', text.value, `Message room ${i}`);
+    function createRoom(){
+        socket.emit('room', i, `Message room ${i++}`);
     }
-    text.addEventListener('change', (e) => {
-        socket.emit('leave', room);
-        socket.emit('join', e.target.value);
-        room = e.target.value;
-    });
+
+    function joinRoom() { 
+        const newRoom = text.value;
+        if (newRoom !== room) {
+            socket.emit('leave', room);
+            socket.emit('join', newRoom);
+            room = newRoom;
+        }
+    }
 
 </script>
 </html>

@@ -50,13 +50,12 @@ io.on('connection', (socket) => {
     
     socket.on('room', (room, msg) => {
         console.log('room: ' + room + ' message: ' + msg);
-        io.to(room).emit('message', msg);
+        socket.join(room);
     });
 
     socket.on('join', (room) => {
         console.log('join room: ' + room);
         socket.join(room);
-        io.to(room).emit('join', room);
     });
     socket.on('leave', (room) => {
         console.log('leave room: ' + room);

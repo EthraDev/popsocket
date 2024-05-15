@@ -42,4 +42,4 @@ fetch(apiurl)
     .then((response) => response.json())
     .then(function(data) {
         displayQuestion(data);
-    });
+    }); 
