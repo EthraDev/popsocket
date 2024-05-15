@@ -32,13 +32,50 @@ body #theRoom {
   display: flex;
 }
 body #theRoom #quizz {
-  display: flex;
   height: 80vh;
   width: 80%;
   background-color: rgba(240, 128, 128, 0.137);
 }
-body #theRoom #tab {
+body #theRoom #quizz #start {
+  font-size: 200px;
+}
+body #theRoom #quizz #question {
+  padding: 0 10px;
+  width: 100%;
+  height: 40%;
+  font-size: 40px;
+  text-align: center;
+}
+body #theRoom #quizz #question p {
+  margin-top: 10%;
+}
+body #theRoom #quizz #answer {
+  width: 100%;
+  height: 60%;
+  font-size: 30px;
   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+body #theRoom #quizz #answer #answers {
+  height: -moz-max-content;
+  height: max-content;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(240, 128, 128, 0.316);
+}
+body #theRoom #quizz #answer #answers:hover {
+  cursor: pointer;
+  background-color: rgba(240, 128, 128, 0.742);
+}
+body #theRoom #quizz #answer #correct {
+  height: -moz-max-content;
+  height: max-content;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(197, 255, 5);
+}
+body #theRoom #tab {
   height: 80vh;
   width: 20%;
   background-color: rgba(144, 238, 144, 0.115);
@@ -47,4 +84,7 @@ body #theRoom #tab #profil {
   height: 15vh;
   width: 100%;
   background-color: rgb(197, 227, 253);
+}
+body #theRoom #tab #players {
+  width: 100%;
 }/*# sourceMappingURL=style.css.map */

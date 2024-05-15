@@ -38,15 +38,57 @@ body{
         display: flex;
 
         #quizz{
-            display: flex;
             height: 80vh;
             width: 80%;
 
             background-color: rgba(240, 128, 128, 0.137);
+
+            #start{
+                font-size: 200px;
+            }
+
+            #question{
+                padding: 0 10px;
+                width: 100%;
+                height: 40%;
+                font-size: 40px;
+                text-align: center;
+
+                p{
+                    margin-top: 10%;
+                }
+            }
+
+            #answer{
+                width: 100%;
+                height: 60%;
+                font-size: 30px;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+
+                #answers{
+                    height: max-content;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: rgba(240, 128, 128, 0.316);
+                }
+
+                #answers:hover{
+                    cursor: pointer;
+                    background-color: rgba(240, 128, 128, 0.742);
+                }
+
+                #correct{
+                    height: max-content;
+                    padding: 20px;
+                    border-radius: 10px;
+                    background-color: rgb(197, 255, 5);
+                }
+            }
         }
 
         #tab{
-            display: flex;
             height: 80vh;
             width: 20%;
 
@@ -56,6 +98,10 @@ body{
                 height: 15vh;
                 width: 100%;
                 background-color: rgb(197, 227, 253);
+            }
+
+            #players{
+                width: 100%;
             }
         }
     }

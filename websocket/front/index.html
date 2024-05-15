@@ -10,22 +10,31 @@
     <div id="header">
         <div>
             <h1>POP SOCKET !</h1>
+            <!-- <button id="start" >start</button>-->
             <p>Your room:</p>
             <textarea name="" id="roomSelector"></textarea>
             <button onclick="createRoom()">Create Room</button>
             <button onclick="joinRoom()">Join Room</button>
+            
+            <p id="time"></p>
         </div>
     </div>
 
     <section id="theRoom">
         <div id="quizz">
+            <p id="start" >START GAME?</p>
             <div id="question"></div>
             <div id="answer"></div>
         </div>
     
         <div id="tab">
-            <div id="profil"></div>
-            <ul></ul>
+            <div id="profil">
+                <p>your score:</p>
+            </div>
+            <div id="players">
+                <p>all players:</p>
+                <ul></ul>
+            </div>
         </div>
     </section>
 
