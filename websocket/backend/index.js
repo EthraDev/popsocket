@@ -11,6 +11,10 @@ const io = new Server(server, {
         origin: '*',
         }
 })
+
+// let dicoscrore ={
+//     "&evgf": 0,
+// }
 app.use(cors())
 app.get('/', (req, res) => {
     res.json('ip address: http://' + ip.address()+':'+PORT);    
@@ -27,6 +31,16 @@ io.on('connection', (socket) => {
         console.log('message: ' + msg);
         io.emit('message', msg);
     });
+
+    // socket.on('getScore', (msg) => {
+    //     let idsocket = socket.id;
+    //     if (dicoscrore[idsocket] == undefined){
+    //         dicoscrore[idsocket] = 0;
+    //     }
+    //     data = dicoscrore[idsocket];
+    //     socket.emit('score', data);
+
+    // })
     
     socket.on('room', (room, msg) => {
         console.log('room: ' + room + ' message: ' + msg);

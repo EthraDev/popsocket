@@ -6,10 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <p>last message</p>
-    <p class="data"></p>
-    <textarea name="" id="" cols="30" rows="10"></textarea>
-    <button onclick="send()">Refresh</button>
+    <div id="header">
+        <textarea name="" id="" cols="15" rows="1" id="roomSelector"></textarea>
+    </div>
+
+    <div id="quizz">
+        <div id="question"></div>
+        <div id="answer"></div>
+    </div>
+
+    <div id="tab">
+
+    </div>
+
+    <!-- <p class="data"></p>
+    <button onclick="send()">Refresh</button> -->
 
 </body>
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
