@@ -1,9 +1,27 @@
 let apiurl = "https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple";
 let currentQuestionIndex = 0;
 
+function startCountdown(time) {
+    let countdown = time-1;
+    let countdownElement = document.querySelector("#time");
+
+    const countdownInterval = setInterval(() => {
+        countdownElement.innerHTML = countdown;
+        if (countdown > 0) {
+            console.log(countdown);
+            countdown--;
+        }else{
+            console.log("Time's up!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            return
+        }
+    }, 1000);
+}
+
 function displayQuestion(data) {
     let question = document.querySelector("#question");
-    question.innerHTML = data.results[currentQuestionIndex].question;
+    question.innerHTML = `<p>
+    ${data.results[currentQuestionIndex].question}
+    </p>`;
 
     let answer = document.querySelector("#answer");
     const answers = data.results[currentQuestionIndex].incorrect_answers.concat(data.results[currentQuestionIndex].correct_answer);
@@ -13,21 +31,19 @@ function displayQuestion(data) {
 
     answers.forEach(e => {
         answer.innerHTML += `
-            <div class="rounded-3xl relative">
-                <h2 class="p-2 text-xs sm:text-base xl:text-base absolute left-0 bottom-0 xl:bottom-[-10%] bg-orange-500 w-full rounded-b-3xl">${e}</h2>
+            <div id="answers">
+                ${e}
             </div>
         `;
     });
-
     setTimeout(displayAnswer, 10000, data.results[currentQuestionIndex].correct_answer, data);
 }
 
 function displayAnswer(correctAnswer, data) {
     let answer = document.querySelector("#answer");
-    answer.innerHTML = `<div class="rounded-3xl relative">
-                            <h2 class="p-2 text-xs sm:text-base xl:text-base absolute left-0 bottom-0 xl:bottom-[-10%] bg-orange-500 w-full rounded-b-3xl">${correctAnswer}</h2>
+    answer.innerHTML = `<div id="correct">
+                            ${correctAnswer}
                         </div>`;
-
     setTimeout(displayNextQuestion, 3000, data);
 }
 
@@ -38,8 +54,15 @@ function displayNextQuestion(data) {
     }
 }
 
-fetch(apiurl)
+let bt = document.querySelector("#start");
+bt.addEventListener("click", function() {
+    bt.style.display = "none";
+
+    fetch(apiurl)
     .then((response) => response.json())
     .then(function(data) {
         displayQuestion(data);
     });
+    startCountdown(10);
+});
+
