@@ -1,1 +1,50 @@
-/*# sourceMappingURL=style.css.map */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+body #header {
+  height: 20vh;
+  background-color: rgba(173, 216, 230, 0.104);
+}
+body #header div {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+}
+body #header div #roomSelector {
+  height: 30px;
+}
+body #header div #roomSelector:hover {
+  background-color: lightgray;
+}
+body #header textarea {
+  resize: none;
+  -moz-text-align-last: center;
+       text-align-last: center;
+}
+body #theRoom {
+  display: flex;
+}
+body #theRoom #quizz {
+  display: flex;
+  height: 80vh;
+  width: 80%;
+  background-color: rgba(240, 128, 128, 0.137);
+}
+body #theRoom #tab {
+  display: flex;
+  height: 80vh;
+  width: 20%;
+  background-color: rgba(144, 238, 144, 0.115);
+}
+body #theRoom #tab #profil {
+  height: 15vh;
+  width: 100%;
+  background-color: rgb(197, 227, 253);
+}/*# sourceMappingURL=style.css.map */
