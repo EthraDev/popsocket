@@ -1,0 +1,62 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow: hidden;
+
+    #header {
+        height: 20vh;
+
+        background-color: rgba(173, 216, 230, 0.104);
+
+        div{
+            display : flex;
+            flex-direction : column;
+            width : 100vw;
+            align-items : center;
+
+            #roomSelector{
+                height: 30px;
+            }
+        
+            #roomSelector:hover{
+                background-color: lightgray;
+            }
+        }
+
+        textarea {
+            resize: none;
+            text-align-last: center
+        }
+    }
+
+    #theRoom{
+        display: flex;
+
+        #quizz{
+            display: flex;
+            height: 80vh;
+            width: 80%;
+
+            background-color: rgba(240, 128, 128, 0.137);
+        }
+
+        #tab{
+            display: flex;
+            height: 80vh;
+            width: 20%;
+
+            background-color: rgba(144, 238, 144, 0.115);
+
+            #profil{
+                height: 15vh;
+                width: 100%;
+                background-color: rgb(197, 227, 253);
+            }
+        }
+    }
+}
