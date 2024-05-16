@@ -35,7 +35,7 @@
             </div>
             <div id="players">
                 <p>all players:</p>
-                <ul></ul>
+                <div id="allScores"></div>
             </div>
         </div>
     </section>
@@ -71,6 +71,18 @@
         document.querySelector('#start').style.display = "none";
     });
 
+    socket.on('scores', (scores)=>{
+        let allPlayers = document.querySelector('#allScores');
+        console.log(scores)
+        allPlayers.innerHTML = '';
+        scores.forEach((element) => {
+            allPlayers.innerHTML += `
+            <ul>
+                ${element.key} : ${element.value}
+            </ul> `;
+        });
+    })
+
     function leaveRoom() {
         if (room != '') {
             socket.emit('leave', room);
@@ -85,17 +97,18 @@
             socket.emit('join', newRoom);
             room = newRoom;
             document.querySelector('#start').value = room;
+            document.querySelector('#theRoom').style.display = "flex";
         }
     }
 
     let bt = document.querySelector("#start");
     bt.addEventListener("click", function () {
         bt.style.display = "none";
-
         socket.emit('start', room)
         //startCountdown(10);
 
     });
+
 
 </script>
 

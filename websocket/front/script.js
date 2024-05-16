@@ -1,6 +1,15 @@
 let currentQuestionIndex = 0;
+let score = 0;
+let chosenAnswer = '';
+
+function putAnswer(chose){
+    console.log('il a choisi ce con');
+    chosenAnswer = chose;
+    console.log(chosenAnswer);
+}
 
 function displayQuestion(data) {
+    socket.emit('getScores', room);
     let question = document.querySelector("#question");
     question.innerHTML = `<p>
     ${data.results[currentQuestionIndex].question}
@@ -14,7 +23,7 @@ function displayQuestion(data) {
 
     answers.forEach(e => {
         answer.innerHTML += `
-            <div id="answers">
+            <div class="answers" id="${e}" onClick="putAnswer('${e}')">
                 ${e}
             </div>
         `;
@@ -28,6 +37,13 @@ function displayAnswer(correctAnswer, data) {
                             ${correctAnswer}
                         </div>`;
     setTimeout(displayNextQuestion, 3000, data);
+    if (chosenAnswer === correctAnswer) {
+        score++;
+        console.log(score);
+        socket.emit('putScore', score);
+    }
+    
+    
 }
 
 function displayNextQuestion(data) {
@@ -36,4 +52,3 @@ function displayNextQuestion(data) {
         displayQuestion(data)
     }
 }
-

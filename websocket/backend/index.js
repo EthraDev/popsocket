@@ -12,7 +12,10 @@ const io = new Server(server, {
         }
 })
 
-const apiurl = "https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple";
+
+
+const apiurl = "https://opentdb.com/api.php?amount=10&category=15&difficulty=easy&type=multiple";
+const scores = new Map();
 
 // let dicoscrore ={
 //     "&evgf": 0,
@@ -58,12 +61,32 @@ io.on('connection', (socket) => {
     socket.on('join', (room) => {
         console.log('join room: ' + room);
         socket.join(room);
+        scores.set(socket.id, 0)
     });
     socket.on('leave', (room) => {
         console.log('leave room: ' + room);
         socket.leave(room);
         io.to(room).emit('leave', room);
     });
+
+    socket.on('putScore', (score) =>{
+        scores.set(socket.id, score);
+    })
+
+    socket.on('getScores', async (room)=>{
+        // console.log(io.in(room).allSockets());
+        let scoresToSend = [];
+        const socketInRoom = await io.in(room).allSockets().then((value) => {return value});
+        if(socketInRoom){
+        scores.forEach((value, key) =>{
+            if(socketInRoom.has(key)){
+                scoresToSend.push({key, value});
+            }
+        })
+
+        io.to(room).emit('scores', scoresToSend);
+    }
+    })
 
     socket.on('start', async (room) =>{
         console.log('starting game in room: ' + room);

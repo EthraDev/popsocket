@@ -67,16 +67,20 @@ body{
                 justify-content: space-around;
                 flex-wrap: wrap;
 
-                #answers{
+                .answers{
                     height: max-content;
                     padding: 10px;
                     border-radius: 10px;
                     background-color: rgba(240, 128, 128, 0.316);
                 }
 
-                #answers:hover{
+                .answers:hover{
                     cursor: pointer;
                     background-color: rgba(240, 128, 128, 0.742);
+                }
+
+                .answers:click{
+                    background-color: rgba(51, 255, 0, 0.316);
                 }
 
                 #correct{
