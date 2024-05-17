@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.none {
+  display: none;
+}
+
 body {
   overflow: hidden;
 }
@@ -25,10 +29,11 @@ body #header div #roomSelector:hover {
 }
 body #header textarea {
   resize: none;
-  text-align-last: center;
+  -moz-text-align-last: center;
+       text-align-last: center;
 }
 body #theRoom {
-  display: none;
+  display: flex;
 }
 body #theRoom #quizz {
   height: 80vh;
@@ -36,7 +41,12 @@ body #theRoom #quizz {
   background-color: rgba(240, 128, 128, 0.137);
 }
 body #theRoom #quizz #start {
-  font-size: 200px;
+  font-size: 100px;
+  cursor: pointer;
+  text-align: center;
+}
+body #theRoom #quizz #start:hover {
+  color: rgba(255, 0, 0, 0.678);
 }
 body #theRoom #quizz #question {
   padding: 0 10px;
@@ -57,6 +67,7 @@ body #theRoom #quizz #answer {
   flex-wrap: wrap;
 }
 body #theRoom #quizz #answer .answers {
+  height: -moz-max-content;
   height: max-content;
   padding: 10px;
   border-radius: 10px;
@@ -70,6 +81,7 @@ body #theRoom #quizz #answer .answers:click {
   background-color: rgba(51, 255, 0, 0.316);
 }
 body #theRoom #quizz #answer #correct {
+  height: -moz-max-content;
   height: max-content;
   padding: 20px;
   border-radius: 10px;
@@ -87,6 +99,4 @@ body #theRoom #tab #profil {
 }
 body #theRoom #tab #players {
   width: 100%;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

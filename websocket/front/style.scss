@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+.none{
+    display: none;
+}
+
 body{
     overflow: hidden;
 
@@ -44,7 +48,13 @@ body{
             background-color: rgba(240, 128, 128, 0.137);
 
             #start{
-                font-size: 200px;
+                font-size: 100px;
+                cursor: pointer;
+                text-align: center;
+            }
+
+            #start:hover{
+                color: rgba(255, 0, 0, 0.678);
             }
 
             #question{

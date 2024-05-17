@@ -24,15 +24,12 @@
     <section id="theRoom">
         
         <div id="quizz">
-            <p id="start">START GAME?</p>
+            <p class="none" id="start">START GAME</p>
             <div id="question"></div>
             <div id="answer"></div>
         </div>
 
         <div id="tab">
-            <div id="profil">
-                <p>your score:</p>
-            </div>
             <div id="players">
                 <p>all players:</p>
                 <div id="allScores"></div>
@@ -89,6 +86,7 @@
             room = '';
         }
     }
+    let bt = document.querySelector("#start");
 
     function joinRoom() {
         const newRoom = text.value;
@@ -98,12 +96,12 @@
             room = newRoom;
             document.querySelector('#start').value = room;
             document.querySelector('#theRoom').style.display = "flex";
+            bt.classList.remove("none");
         }
     }
 
-    let bt = document.querySelector("#start");
     bt.addEventListener("click", function () {
-        bt.style.display = "none";
+        bt.classList.add = "none";
         socket.emit('start', room)
         //startCountdown(10);
 
